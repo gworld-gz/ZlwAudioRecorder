@@ -1,11 +1,16 @@
 package com.zlw.main.recorderlib.recorder;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 
+import com.zlw.main.recorderlib.R;
 import com.zlw.main.recorderlib.recorder.listener.RecordDataListener;
 import com.zlw.main.recorderlib.recorder.listener.RecordFftDataListener;
 import com.zlw.main.recorderlib.recorder.listener.RecordResultListener;
@@ -44,8 +49,23 @@ public class RecordService extends Service {
 
     private final static String PARAM_PATH = "path";
 
+    public static final String CHANNEL_ID_STRING = "service_record";
+
 
     public RecordService() {
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID_STRING, getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(mChannel);
+            Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID_STRING).build();
+            startForeground(1, notification);
+        }
     }
 
     @Override
@@ -87,7 +107,11 @@ public class RecordService extends Service {
         Intent intent = new Intent(context, RecordService.class);
         intent.putExtra(ACTION_NAME, ACTION_START_RECORD);
         intent.putExtra(PARAM_PATH, getFilePath());
-        context.startService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     public static void stopRecording(Context context) {

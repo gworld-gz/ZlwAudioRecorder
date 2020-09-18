@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZlwAudioRecorder.iml" filepath="$PROJECT_DIR$/ZlwAudioRecorder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ZlwAudioRecorder-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ZlwAudioRecorder-app.iml" group="ZlwAudioRecorder/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recorderlib/com.github.zhaolewei-recorderlib.iml" filepath="$PROJECT_DIR$/.idea/modules/recorderlib/com.github.zhaolewei-recorderlib.iml" group="ZlwAudioRecorder/recorderlib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projects-ZlwAudioRecorder.iml" filepath="$PROJECT_DIR$/.idea/modules/projects-ZlwAudioRecorder.iml" group="ZlwAudioRecorder" />
       <module fileurl="file://$PROJECT_DIR$/recorderlib/recorderlib.iml" filepath="$PROJECT_DIR$/recorderlib/recorderlib.iml" />
     </modules>
   </component>
